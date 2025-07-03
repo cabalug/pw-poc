@@ -35,7 +35,7 @@ pipeline {
                     
                     steps {
                         sh '''
-                            pnpm test:qa -g "${params.FEATURE_FILTER}"
+                            pnpm test:qa -g ${FEATURE_FILTER}
                         '''
                     }
                 }
@@ -48,7 +48,7 @@ pipeline {
                     
                     steps {
                         sh '''
-                            pnpm test:st -g "${params.FEATURE_FILTER}"
+                            pnpm test:st -g ${FEATURE_FILTER}
                         '''
                     }
                 }
@@ -60,7 +60,7 @@ pipeline {
                     }}
                     steps {
                         sh '''
-                            pnpm test:prod -g "${params.FEATURE_FILTER}"
+                            pnpm test:prod -g ${FEATURE_FILTER}
                         '''
                     }
                 }
