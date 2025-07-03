@@ -64,7 +64,7 @@ pipeline {
                     }}
                    
                     script {
-                        def command = 'pnpm test:qa'
+                        def command = 'pnpm test:prod'
                         if (params.FEATURE_FILTER != 'all') {
                             command += " -g '${params.FEATURE_FILTER}'"
                         }
