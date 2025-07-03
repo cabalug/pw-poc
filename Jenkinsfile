@@ -1,7 +1,7 @@
 pipeline {
-    properties([
+    options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
-    ])
+    }
 
     parameters {
         choice(name: 'ENV_FILTER', choices: ['all', 'qa', 'st', 'prod'], description: 'Run on specific platform')
