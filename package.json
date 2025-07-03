@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:qa": "pnpm playwright test  --config=./configs/qa.config.ts",
+    "test:st": "pnpm playwright test  --config=./configs/st.config.ts",
     "test:prod": "pnpm playwright test  --config=./configs/prod.config.ts"
   },
   "keywords": [],
