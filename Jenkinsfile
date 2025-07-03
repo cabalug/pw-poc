@@ -33,12 +33,14 @@ pipeline {
                         expression { params.ENV_FILTER == 'qa' }
                     }}
                     
-                    script {
-                        def command = 'pnpm test:qa'
-                        if (params.FEATURE_FILTER != 'all') {
-                            command += " -g '${params.FEATURE_FILTER}'"
+                    steps {
+                        script {
+                            def command = 'pnpm test:qa'
+                            if (params.FEATURE_FILTER != 'all') {
+                                command += " -g '${params.FEATURE_FILTER}'"
+                            }
+                            sh command
                         }
-                        sh command
                     }
                 }
                 
@@ -48,12 +50,14 @@ pipeline {
                         expression { params.ENV_FILTER == 'st' }
                     }}
                     
-                    script {
-                        def command = 'pnpm test:st'
-                        if (params.FEATURE_FILTER != 'all') {
-                            command += " -g '${params.FEATURE_FILTER}'"
+                    steps {
+                        script {
+                            def command = 'pnpm test:st'
+                            if (params.FEATURE_FILTER != 'all') {
+                                command += " -g '${params.FEATURE_FILTER}'"
+                            }
+                            sh command
                         }
-                        sh command
                     }
                 }
                 
@@ -62,13 +66,14 @@ pipeline {
                         expression { params.ENV_FILTER == 'all' }
                         expression { params.ENV_FILTER == 'prod' }
                     }}
-                   
-                    script {
-                        def command = 'pnpm test:prod'
-                        if (params.FEATURE_FILTER != 'all') {
-                            command += " -g '${params.FEATURE_FILTER}'"
+                    steps {
+                        script {
+                            def command = 'pnpm test:prod'
+                            if (params.FEATURE_FILTER != 'all') {
+                                command += " -g '${params.FEATURE_FILTER}'"
+                            }
+                            sh command
                         }
-                        sh command
                     }
                 }
             }
