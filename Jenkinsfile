@@ -5,6 +5,7 @@ pipeline {
 
     parameters {
         choice(name: 'ENV_FILTER', choices: ['all', 'qa', 'st', 'prod'], description: 'Run on specific platform')
+        choice(name: 'FEATURE_FILTER', choices: ['all', 'Auth', 'Events', 'Supply'], description: 'Run specific feature')
     }
     
     agent { 
@@ -34,7 +35,7 @@ pipeline {
                     
                     steps {
                         sh '''
-                            pnpm test:qa
+                            pnpm test:qa -g "${params.FEATURE_FILTER}"
                         '''
                     }
                 }
@@ -47,7 +48,7 @@ pipeline {
                     
                     steps {
                         sh '''
-                            pnpm test:st
+                            pnpm test:st -g "${params.FEATURE_FILTER}"
                         '''
                     }
                 }
@@ -59,7 +60,7 @@ pipeline {
                     }}
                     steps {
                         sh '''
-                            pnpm test:prod
+                            pnpm test:prod -g "${params.FEATURE_FILTER}"
                         '''
                     }
                 }
