@@ -33,10 +33,12 @@ pipeline {
                         expression { params.ENV_FILTER == 'qa' }
                     }}
                     
-                    steps {
-                        sh '''
-                            pnpm test:qa -g ${FEATURE_FILTER}
-                        '''
+                    script {
+                        def command = 'pnpm test:qa'
+                        if (params.FEATURE_FILTER != 'all') {
+                            command += " -g '${params.FEATURE_FILTER}'"
+                        }
+                        sh command
                     }
                 }
                 
@@ -46,10 +48,12 @@ pipeline {
                         expression { params.ENV_FILTER == 'st' }
                     }}
                     
-                    steps {
-                        sh '''
-                            pnpm test:st -g ${FEATURE_FILTER}
-                        '''
+                    script {
+                        def command = 'pnpm test:st'
+                        if (params.FEATURE_FILTER != 'all') {
+                            command += " -g '${params.FEATURE_FILTER}'"
+                        }
+                        sh command
                     }
                 }
                 
@@ -58,10 +62,13 @@ pipeline {
                         expression { params.ENV_FILTER == 'all' }
                         expression { params.ENV_FILTER == 'prod' }
                     }}
-                    steps {
-                        sh '''
-                            pnpm test:prod -g ${FEATURE_FILTER}
-                        '''
+                   
+                    script {
+                        def command = 'pnpm test:qa'
+                        if (params.FEATURE_FILTER != 'all') {
+                            command += " -g '${params.FEATURE_FILTER}'"
+                        }
+                        sh command
                     }
                 }
             }
